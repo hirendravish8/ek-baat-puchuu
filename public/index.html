@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ek baat puchuu</title>
+    <title>Bolo</title>
+
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#7f1d1d">
 
     <style>
 
@@ -21,13 +27,12 @@
             overflow: hidden;
         }
 
-        /* =========================
-           LOGIN SCREEN
-        ========================= */
+        /* LOGIN */
 
         .login-screen {
             position: fixed;
             inset: 0;
+
             background:
                 radial-gradient(circle at top left, #4a1515, transparent 35%),
                 radial-gradient(circle at bottom right, #320d0d, transparent 35%),
@@ -61,8 +66,6 @@
 
             backdrop-filter: blur(18px);
         }
-
-        /* CAT */
 
         .cat-logo {
             width: 95px;
@@ -156,10 +159,7 @@
             transform: translateY(-1px);
         }
 
-
-        /* =========================
-           MAIN APP
-        ========================= */
+        /* APP */
 
         .app {
             width: 100%;
@@ -172,10 +172,7 @@
             color: white;
         }
 
-
-        /* =========================
-           SIDEBAR
-        ========================= */
+        /* SIDEBAR */
 
         .sidebar {
             width: 300px;
@@ -283,6 +280,7 @@
             display: flex;
 
             align-items: center;
+
             justify-content: center;
 
             font-weight: bold;
@@ -300,13 +298,11 @@
 
             margin-left: auto;
 
-            box-shadow: 0 0 8px rgba(34,197,94,0.5);
+            box-shadow:
+                0 0 8px rgba(34,197,94,0.5);
         }
 
-
-        /* =========================
-           CHAT
-        ========================= */
+        /* CHAT */
 
         .chat {
             flex: 1;
@@ -346,10 +342,7 @@
             color: #22c55e;
         }
 
-
-        /* =========================
-           EMPTY STATE
-        ========================= */
+        /* EMPTY */
 
         .empty {
             flex: 1;
@@ -397,10 +390,7 @@
             font-size: 13px;
         }
 
-
-        /* =========================
-           MESSAGES
-        ========================= */
+        /* MESSAGES */
 
         #messages {
             flex: 1;
@@ -448,10 +438,7 @@
             border-bottom-right-radius: 5px;
         }
 
-
-        /* =========================
-           MESSAGE INPUT
-        ========================= */
+        /* INPUT */
 
         .input-area {
             padding: 17px 20px;
@@ -509,10 +496,7 @@
             background: #b91c1c;
         }
 
-
-        /* =========================
-           MOBILE
-        ========================= */
+        /* MOBILE */
 
         @media (max-width: 700px) {
 
@@ -553,491 +537,470 @@
         }
 
     </style>
-</head>
 
+</head>
 
 <body>
 
+    <!-- LOGIN -->
 
-<!-- =========================
-     LOGIN
-========================= -->
+    <div class="login-screen" id="loginScreen">
 
-<div class="login-screen" id="loginScreen">
+        <div class="login-box">
 
-    <div class="login-box">
-
-        <div class="cat-logo">
-            🐱
-        </div>
-
-        <h1>
-            Ek baat puchuu
-        </h1>
-
-        <p class="tagline">
-            10min plssssss
-        </p>
-
-        <input
-            type="text"
-            id="usernameInput"
-            placeholder="Enter your name..."
-            autocomplete="off"
-        >
-
-        <button
-            class="login-button"
-            onclick="joinChat()"
-        >
-            Let's Chat
-        </button>
-
-    </div>
-
-</div>
-
-
-<!-- =========================
-     MAIN APP
-========================= -->
-
-<div class="app">
-
-
-    <!-- SIDEBAR -->
-
-    <aside class="sidebar">
-
-        <div class="sidebar-header">
-
-            <div class="brand">
-
-                <div class="brand-cat">
-                    🐱
-                </div>
-
-                <span>
-                    ek baat puchuu
-                </span>
-
+            <div class="cat-logo">
+                🐱
             </div>
 
-        </div>
+            <h1>
+                Ek baat batao
+            </h1>
 
-
-        <div class="user-title">
-            People online
-        </div>
-
-
-        <ul id="userList"></ul>
-
-    </aside>
-
-
-
-    <!-- CHAT AREA -->
-
-    <main class="chat">
-
-
-        <!-- CHAT HEADER -->
-
-        <div class="chat-header">
-
-            <div
-                class="avatar"
-                id="headerAvatar"
-            >
-                ?
-            </div>
-
-            <div class="chat-user-info">
-
-                <h3 id="chatHeader">
-                    Select a user
-                </h3>
-
-                <span id="status">
-                    Choose someone to chat
-                </span>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- EMPTY STATE -->
-
-        <div
-            id="emptyState"
-            class="empty"
-        >
-
-            <div>
-
-                <div class="empty-cat">
-                    🐱
-                </div>
-
-                <h2>
-                    kaise ho mere kuchupuchu
-                </h2>
-
-                <p>
-                    Left side se select karo.
-                </p>
-
-            </div>
-
-        </div>
-
-
-
-        <!-- MESSAGES -->
-
-        <ul
-            id="messages"
-            style="display:none;"
-        ></ul>
-
-
-
-        <!-- INPUT -->
-
-        <form
-            class="input-area"
-            id="chatForm"
-        >
+            <p class="tagline">
+                10min plssssss
+            </p>
 
             <input
                 type="text"
-                id="messageInput"
-                placeholder="Kuch puchna hai..."
+                id="usernameInput"
+                placeholder="Enter your name..."
                 autocomplete="off"
             >
 
             <button
-                class="send-btn"
-                type="submit"
+                class="login-button"
+                onclick="joinChat()"
             >
-                ➤
+                Let's Chat
             </button>
 
-        </form>
+        </div>
+
+    </div>
 
 
-    </main>
+    <!-- MAIN APP -->
 
-</div>
+    <div class="app">
 
+        <!-- SIDEBAR -->
 
+        <aside class="sidebar">
 
-<script src="/socket.io/socket.io.js"></script>
+            <div class="sidebar-header">
 
+                <div class="brand">
 
-<script>
+                    <div class="brand-cat">
+                        🐱
+                    </div>
 
-const socket = io();
+                    <span>
+                        Ek baat batao
+                    </span>
 
+                </div>
 
-let username = "";
+            </div>
 
-let selectedUser = "";
+            <div class="user-title">
+                People online
+            </div>
 
+            <ul id="userList"></ul>
 
-const loginScreen =
-    document.getElementById("loginScreen");
-
-
-const usernameInput =
-    document.getElementById("usernameInput");
-
-
-const userList =
-    document.getElementById("userList");
-
-
-const chatHeader =
-    document.getElementById("chatHeader");
+        </aside>
 
 
-const status =
-    document.getElementById("status");
+        <!-- CHAT -->
+
+        <main class="chat">
+
+            <div class="chat-header">
+
+                <div
+                    class="avatar"
+                    id="headerAvatar"
+                >
+                    ?
+                </div>
+
+                <div class="chat-user-info">
+
+                    <h3 id="chatHeader">
+                        Select a user
+                    </h3>
+
+                    <span id="status">
+                        Choose someone to chat
+                    </span>
+
+                </div>
+
+            </div>
 
 
-const headerAvatar =
-    document.getElementById("headerAvatar");
+            <!-- EMPTY STATE -->
+
+            <div
+                id="emptyState"
+                class="empty"
+            >
+
+                <div>
+
+                    <div class="empty-cat">
+                        🐱
+                    </div>
+
+                    <h2>
+                        kaise ho mere kuchupuchu
+                    </h2>
+
+                    <p>
+                        Left side se select karo.
+                    </p>
+
+                </div>
+
+            </div>
 
 
-const messages =
-    document.getElementById("messages");
+            <!-- MESSAGES -->
+
+            <ul
+                id="messages"
+                style="display:none;"
+            ></ul>
 
 
-const emptyState =
-    document.getElementById("emptyState");
+            <!-- MESSAGE INPUT -->
+
+            <form
+                class="input-area"
+                id="chatForm"
+            >
+
+                <input
+                    type="text"
+                    id="messageInput"
+                    placeholder="Kuch puchna hai..."
+                    autocomplete="off"
+                >
+
+                <button
+                    class="send-btn"
+                    type="submit"
+                >
+                    ➤
+                </button>
+
+            </form>
+
+        </main>
+
+    </div>
 
 
-const messageInput =
-    document.getElementById("messageInput");
+    <!-- SOCKET.IO -->
+
+    <script src="/socket.io/socket.io.js"></script>
 
 
-const chatForm =
-    document.getElementById("chatForm");
+    <script>
+
+        const socket = io();
+
+        let username = "";
+        let selectedUser = "";
+
+        const loginScreen =
+            document.getElementById("loginScreen");
+
+        const usernameInput =
+            document.getElementById("usernameInput");
+
+        const userList =
+            document.getElementById("userList");
+
+        const chatHeader =
+            document.getElementById("chatHeader");
+
+        const status =
+            document.getElementById("status");
+
+        const headerAvatar =
+            document.getElementById("headerAvatar");
+
+        const messages =
+            document.getElementById("messages");
+
+        const emptyState =
+            document.getElementById("emptyState");
+
+        const messageInput =
+            document.getElementById("messageInput");
+
+        const chatForm =
+            document.getElementById("chatForm");
 
 
+        /* JOIN CHAT */
 
-/* JOIN CHAT */
+        function joinChat() {
 
-function joinChat() {
+            const name =
+                usernameInput.value.trim();
 
-    const name =
-        usernameInput.value.trim();
+            if (name === "") {
 
+                alert(
+                    "Pehle apna naam enter karo."
+                );
 
-    if (name === "") {
+                return;
+            }
 
-        alert("Pehle apna naam enter karo.");
+            username = name;
 
-        return;
+            socket.emit(
+                "join",
+                username
+            );
 
-    }
-
-
-    username = name;
-
-
-    socket.emit(
-        "join",
-        username
-    );
-
-
-    loginScreen.style.display =
-        "none";
-
-}
-
-
-
-/* ENTER KEY */
-
-usernameInput.addEventListener(
-    "keydown",
-    function(e) {
-
-        if (e.key === "Enter") {
-
-            joinChat();
+            loginScreen.style.display =
+                "none";
 
         }
 
-    }
-);
+
+        /* ENTER KEY */
+
+        usernameInput.addEventListener(
+            "keydown",
+            function(e) {
+
+                if (e.key === "Enter") {
+
+                    joinChat();
+
+                }
+
+            }
+        );
 
 
+        /* USER LIST */
 
-/* USER LIST */
+        socket.on(
+            "user list",
+            (users) => {
 
-socket.on(
-    "user list",
-    (users) => {
+                userList.innerHTML = "";
 
-        userList.innerHTML = "";
+                users.forEach(
+                    (user) => {
+
+                        if (
+                            user === username
+                        ) return;
+
+                        const li =
+                            document.createElement("li");
+
+                        const avatar =
+                            document.createElement("div");
+
+                        avatar.className = "avatar";
+
+                        avatar.textContent =
+                            user
+                                .charAt(0)
+                                .toUpperCase();
+
+                        const usernameSpan =
+                            document.createElement("span");
+
+                        usernameSpan.className =
+                            "username";
+
+                        usernameSpan.textContent =
+                            user;
+
+                        const onlineDot =
+                            document.createElement("div");
+
+                        onlineDot.className =
+                            "online-dot";
+
+                        li.appendChild(avatar);
+                        li.appendChild(usernameSpan);
+                        li.appendChild(onlineDot);
 
 
-        users.forEach(
-            (user) => {
+                        li.onclick = () => {
 
-                if (
-                    user === username
-                ) return;
+                            selectedUser =
+                                user;
+
+                            document
+                                .querySelectorAll(
+                                    "#userList li"
+                                )
+                                .forEach(
+                                    item =>
+                                        item.classList
+                                            .remove(
+                                                "active"
+                                            )
+                                );
+
+                            li.classList.add(
+                                "active"
+                            );
+
+                            chatHeader.textContent =
+                                user;
+
+                            status.textContent =
+                                "● Online";
+
+                            headerAvatar.textContent =
+                                user
+                                    .charAt(0)
+                                    .toUpperCase();
+
+                            emptyState.style.display =
+                                "none";
+
+                            messages.style.display =
+                                "flex";
+
+                            messages.innerHTML =
+                                "";
+
+                        };
+
+
+                        userList.appendChild(li);
+
+                    }
+                );
+
+            }
+        );
+
+
+        /* SEND MESSAGE */
+
+        chatForm.addEventListener(
+            "submit",
+            (e) => {
+
+                e.preventDefault();
+
+                const message =
+                    messageInput.value.trim();
+
+                if (message === "")
+                    return;
+
+                if (selectedUser === "") {
+
+                    alert(
+                        "Pehle kisi user ko select karo."
+                    );
+
+                    return;
+                }
+
+                socket.emit(
+                    "private message",
+                    {
+                        to: selectedUser,
+                        message: message
+                    }
+                );
 
 
                 const li =
                     document.createElement("li");
 
+                li.classList.add(
+                    "mine"
+                );
 
-                li.innerHTML = `
+                li.textContent =
+                    "You: " + message;
 
-                    <div class="avatar">
-                        ${user
-                            .charAt(0)
-                            .toUpperCase()}
-                    </div>
+                messages.appendChild(li);
 
-                    <span class="username">
-                        ${user}
-                    </span>
+                messageInput.value =
+                    "";
 
-                    <div class="online-dot"></div>
-
-                `;
-
-
-                li.onclick = () => {
-
-                    selectedUser =
-                        user;
-
-
-                    document
-                        .querySelectorAll(
-                            "#userList li"
-                        )
-                        .forEach(
-                            item =>
-                                item.classList
-                                    .remove(
-                                        "active"
-                                    )
-                        );
-
-
-                    li.classList.add(
-                        "active"
-                    );
-
-
-                    chatHeader.textContent =
-                        user;
-
-
-                    status.textContent =
-                        "● Online";
-
-
-                    headerAvatar.textContent =
-                        user
-                            .charAt(0)
-                            .toUpperCase();
-
-
-                    emptyState.style.display =
-                        "none";
-
-
-                    messages.style.display =
-                        "flex";
-
-
-                    messages.innerHTML =
-                        "";
-
-                };
-
-                
-                userList.appendChild(li);
+                messages.scrollTop =
+                    messages.scrollHeight;
 
             }
         );
 
-    }
-);
+
+        /* RECEIVE MESSAGE */
+
+        socket.on(
+            "private message",
+            (data) => {
+
+                const li =
+                    document.createElement("li");
+
+                li.textContent =
+                    data.from +
+                    ": " +
+                    data.message;
+
+                messages.appendChild(li);
+
+                messages.scrollTop =
+                    messages.scrollHeight;
+
+            }
+        );
+
+    </script>
 
 
+    <!-- SERVICE WORKER -->
 
-/* SEND MESSAGE */
+    <script>
 
-chatForm.addEventListener(
-    "submit",
-    (e) => {
+        if ("serviceWorker" in navigator) {
 
-        e.preventDefault();
+            window.addEventListener(
+                "load",
+                () => {
 
+                    navigator.serviceWorker
+                        .register("/sw.js")
+                        .then(() => {
+                            console.log(
+                                "Service Worker registered"
+                            );
+                        })
+                        .catch((error) => {
+                            console.error(
+                                "Service Worker registration failed:",
+                                error
+                            );
+                        });
 
-        const message =
-            messageInput.value.trim();
-
-
-        if (message === "")
-            return;
-
-
-        if (selectedUser === "") {
-
-            alert(
-                "Pehle kisi user ko select karo."
+                }
             );
-
-            return;
 
         }
 
-
-        socket.emit(
-            "private message",
-            {
-
-                to: selectedUser,
-
-                message: message
-
-            }
-        );
-
-
-        const li =
-            document.createElement("li");
-
-
-        li.classList.add(
-            "mine"
-        );
-
-
-        li.textContent =
-            "You: " + message;
-
-
-        messages.appendChild(
-            li
-        );
-
-
-        messageInput.value =
-            "";
-
-
-        messages.scrollTop =
-            messages.scrollHeight;
-
-    }
-);
-
-
-
-/* RECEIVE MESSAGE */
-
-socket.on(
-    "private message",
-    (data) => {
-
-        const li =
-            document.createElement("li");
-
-
-        li.textContent =
-            data.from +
-            ": " +
-            data.message;
-
-
-        messages.appendChild(
-            li
-        );
-
-
-        messages.scrollTop =
-            messages.scrollHeight;
-
-    }
-);
-
-</script>
-
+    </script>
 
 </body>
+
 </html>
