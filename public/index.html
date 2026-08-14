@@ -1,0 +1,1043 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ek baat puchuu</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: "Trebuchet MS", Arial, sans-serif;
+            background: #120b0b;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* =========================
+           LOGIN SCREEN
+        ========================= */
+
+        .login-screen {
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(circle at top left, #4a1515, transparent 35%),
+                radial-gradient(circle at bottom right, #320d0d, transparent 35%),
+                #120b0b;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 10;
+        }
+
+        .login-box {
+            width: 90%;
+            max-width: 390px;
+
+            padding: 38px 32px;
+
+            background: rgba(45, 20, 20, 0.85);
+
+            border: 1px solid rgba(255,255,255,0.08);
+
+            border-radius: 28px;
+
+            text-align: center;
+
+            color: white;
+
+            box-shadow:
+                0 30px 80px rgba(0,0,0,0.55);
+
+            backdrop-filter: blur(18px);
+        }
+
+        /* CAT */
+
+        .cat-logo {
+            width: 95px;
+            height: 95px;
+
+            margin: auto;
+            margin-bottom: 20px;
+
+            border-radius: 30px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 55px;
+
+            background: #7f1d1d;
+
+            box-shadow:
+                0 15px 35px rgba(127,29,29,0.5);
+
+            transform: rotate(-3deg);
+
+            transition: 0.3s;
+        }
+
+        .cat-logo:hover {
+            transform: rotate(3deg) scale(1.05);
+        }
+
+        .login-box h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+        }
+
+        .tagline {
+            color: #c9a6a6;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .login-box input {
+            width: 100%;
+
+            padding: 15px;
+
+            border: 1px solid #542626;
+
+            outline: none;
+
+            border-radius: 14px;
+
+            background: #211313;
+
+            color: white;
+
+            margin-bottom: 14px;
+
+            font-size: 15px;
+        }
+
+        .login-box input:focus {
+            border-color: #b91c1c;
+        }
+
+        .login-button {
+            width: 100%;
+
+            padding: 15px;
+
+            border: none;
+
+            border-radius: 14px;
+
+            background: #991b1b;
+
+            color: white;
+
+            font-size: 15px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .login-button:hover {
+            background: #b91c1c;
+            transform: translateY(-1px);
+        }
+
+
+        /* =========================
+           MAIN APP
+        ========================= */
+
+        .app {
+            width: 100%;
+            height: 100vh;
+
+            display: flex;
+
+            background: #120b0b;
+
+            color: white;
+        }
+
+
+        /* =========================
+           SIDEBAR
+        ========================= */
+
+        .sidebar {
+            width: 300px;
+
+            background: #170d0d;
+
+            border-right: 1px solid #321818;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 22px 20px;
+
+            border-bottom: 1px solid #321818;
+        }
+
+        .brand {
+            display: flex;
+
+            align-items: center;
+
+            gap: 11px;
+
+            font-size: 19px;
+
+            font-weight: bold;
+        }
+
+        .brand-cat {
+            width: 42px;
+            height: 42px;
+
+            border-radius: 14px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 24px;
+
+            background: #7f1d1d;
+
+            transform: rotate(-3deg);
+        }
+
+        .user-title {
+            padding: 20px 20px 12px;
+
+            color: #987979;
+
+            font-size: 11px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.5px;
+        }
+
+        #userList {
+            list-style: none;
+
+            padding: 0 12px;
+        }
+
+        #userList li {
+            padding: 13px;
+
+            margin-bottom: 5px;
+
+            border-radius: 15px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            color: #eee;
+
+            transition: 0.2s;
+        }
+
+        #userList li:hover {
+            background: #281414;
+        }
+
+        #userList li.active {
+            background: #4a1515;
+        }
+
+        .avatar {
+            width: 42px;
+            height: 42px;
+
+            flex-shrink: 0;
+
+            border-radius: 50%;
+
+            background: #7f1d1d;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            font-weight: bold;
+
+            color: white;
+        }
+
+        .online-dot {
+            width: 8px;
+            height: 8px;
+
+            background: #22c55e;
+
+            border-radius: 50%;
+
+            margin-left: auto;
+
+            box-shadow: 0 0 8px rgba(34,197,94,0.5);
+        }
+
+
+        /* =========================
+           CHAT
+        ========================= */
+
+        .chat {
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            background: #100909;
+        }
+
+        .chat-header {
+            height: 75px;
+
+            padding: 15px 25px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 12px;
+
+            border-bottom: 1px solid #321818;
+
+            background: #170d0d;
+        }
+
+        .chat-user-info h3 {
+            font-size: 16px;
+
+            margin-bottom: 3px;
+        }
+
+        .chat-user-info span {
+            font-size: 11px;
+
+            color: #22c55e;
+        }
+
+
+        /* =========================
+           EMPTY STATE
+        ========================= */
+
+        .empty {
+            flex: 1;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            text-align: center;
+
+            color: #806b6b;
+        }
+
+        .empty-cat {
+            font-size: 60px;
+
+            margin-bottom: 15px;
+
+            animation: floatCat 2.5s infinite ease-in-out;
+        }
+
+        @keyframes floatCat {
+
+            0%,100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-7px);
+            }
+
+        }
+
+        .empty h2 {
+            color: #c5a8a8;
+
+            font-size: 21px;
+
+            margin-bottom: 8px;
+        }
+
+        .empty p {
+            font-size: 13px;
+        }
+
+
+        /* =========================
+           MESSAGES
+        ========================= */
+
+        #messages {
+            flex: 1;
+
+            list-style: none;
+
+            padding: 25px;
+
+            overflow-y: auto;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 9px;
+        }
+
+        #messages li {
+            max-width: 65%;
+
+            padding: 11px 15px;
+
+            border-radius: 17px;
+
+            background: #281616;
+
+            color: #eee;
+
+            align-self: flex-start;
+
+            line-height: 1.4;
+
+            font-size: 14px;
+
+            border-bottom-left-radius: 5px;
+        }
+
+        #messages li.mine {
+            background: #8b1d1d;
+
+            align-self: flex-end;
+
+            border-bottom-left-radius: 17px;
+
+            border-bottom-right-radius: 5px;
+        }
+
+
+        /* =========================
+           MESSAGE INPUT
+        ========================= */
+
+        .input-area {
+            padding: 17px 20px;
+
+            display: flex;
+
+            gap: 9px;
+
+            background: #170d0d;
+
+            border-top: 1px solid #321818;
+        }
+
+        #messageInput {
+            flex: 1;
+
+            padding: 14px 17px;
+
+            border: 1px solid #432121;
+
+            outline: none;
+
+            border-radius: 17px;
+
+            background: #211313;
+
+            color: white;
+
+            font-size: 14px;
+        }
+
+        #messageInput:focus {
+            border-color: #8b1d1d;
+        }
+
+        .send-btn {
+            width: 52px;
+
+            border: none;
+
+            border-radius: 16px;
+
+            background: #991b1b;
+
+            color: white;
+
+            font-size: 18px;
+
+            cursor: pointer;
+
+            transition: 0.2s;
+        }
+
+        .send-btn:hover {
+            background: #b91c1c;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 700px) {
+
+            .sidebar {
+                width: 82px;
+            }
+
+            .brand span,
+            .user-title,
+            #userList li .username,
+            .online-dot {
+                display: none;
+            }
+
+            .sidebar-header {
+                display: flex;
+
+                justify-content: center;
+            }
+
+            #userList li {
+                justify-content: center;
+            }
+
+            .avatar {
+                width: 45px;
+                height: 45px;
+            }
+
+            #messages li {
+                max-width: 80%;
+            }
+
+            .chat-header {
+                padding: 15px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div class="login-screen" id="loginScreen">
+
+    <div class="login-box">
+
+        <div class="cat-logo">
+            🐱
+        </div>
+
+        <h1>
+            Ek baat puchuu
+        </h1>
+
+        <p class="tagline">
+            10min plssssss
+        </p>
+
+        <input
+            type="text"
+            id="usernameInput"
+            placeholder="Enter your name..."
+            autocomplete="off"
+        >
+
+        <button
+            class="login-button"
+            onclick="joinChat()"
+        >
+            Let's Chat
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN APP
+========================= -->
+
+<div class="app">
+
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-header">
+
+            <div class="brand">
+
+                <div class="brand-cat">
+                    🐱
+                </div>
+
+                <span>
+                    ek baat puchuu
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="user-title">
+            People online
+        </div>
+
+
+        <ul id="userList"></ul>
+
+    </aside>
+
+
+
+    <!-- CHAT AREA -->
+
+    <main class="chat">
+
+
+        <!-- CHAT HEADER -->
+
+        <div class="chat-header">
+
+            <div
+                class="avatar"
+                id="headerAvatar"
+            >
+                ?
+            </div>
+
+            <div class="chat-user-info">
+
+                <h3 id="chatHeader">
+                    Select a user
+                </h3>
+
+                <span id="status">
+                    Choose someone to chat
+                </span>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- EMPTY STATE -->
+
+        <div
+            id="emptyState"
+            class="empty"
+        >
+
+            <div>
+
+                <div class="empty-cat">
+                    🐱
+                </div>
+
+                <h2>
+                    kaise ho mere kuchupuchu
+                </h2>
+
+                <p>
+                    Left side se select karo.
+                </p>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- MESSAGES -->
+
+        <ul
+            id="messages"
+            style="display:none;"
+        ></ul>
+
+
+
+        <!-- INPUT -->
+
+        <form
+            class="input-area"
+            id="chatForm"
+        >
+
+            <input
+                type="text"
+                id="messageInput"
+                placeholder="Kuch puchna hai..."
+                autocomplete="off"
+            >
+
+            <button
+                class="send-btn"
+                type="submit"
+            >
+                ➤
+            </button>
+
+        </form>
+
+
+    </main>
+
+</div>
+
+
+
+<script src="/socket.io/socket.io.js"></script>
+
+
+<script>
+
+const socket = io();
+
+
+let username = "";
+
+let selectedUser = "";
+
+
+const loginScreen =
+    document.getElementById("loginScreen");
+
+
+const usernameInput =
+    document.getElementById("usernameInput");
+
+
+const userList =
+    document.getElementById("userList");
+
+
+const chatHeader =
+    document.getElementById("chatHeader");
+
+
+const status =
+    document.getElementById("status");
+
+
+const headerAvatar =
+    document.getElementById("headerAvatar");
+
+
+const messages =
+    document.getElementById("messages");
+
+
+const emptyState =
+    document.getElementById("emptyState");
+
+
+const messageInput =
+    document.getElementById("messageInput");
+
+
+const chatForm =
+    document.getElementById("chatForm");
+
+
+
+/* JOIN CHAT */
+
+function joinChat() {
+
+    const name =
+        usernameInput.value.trim();
+
+
+    if (name === "") {
+
+        alert("Pehle apna naam enter karo.");
+
+        return;
+
+    }
+
+
+    username = name;
+
+
+    socket.emit(
+        "join",
+        username
+    );
+
+
+    loginScreen.style.display =
+        "none";
+
+}
+
+
+
+/* ENTER KEY */
+
+usernameInput.addEventListener(
+    "keydown",
+    function(e) {
+
+        if (e.key === "Enter") {
+
+            joinChat();
+
+        }
+
+    }
+);
+
+
+
+/* USER LIST */
+
+socket.on(
+    "user list",
+    (users) => {
+
+        userList.innerHTML = "";
+
+
+        users.forEach(
+            (user) => {
+
+                if (
+                    user === username
+                ) return;
+
+
+                const li =
+                    document.createElement("li");
+
+
+                li.innerHTML = `
+
+                    <div class="avatar">
+                        ${user
+                            .charAt(0)
+                            .toUpperCase()}
+                    </div>
+
+                    <span class="username">
+                        ${user}
+                    </span>
+
+                    <div class="online-dot"></div>
+
+                `;
+
+
+                li.onclick = () => {
+
+                    selectedUser =
+                        user;
+
+
+                    document
+                        .querySelectorAll(
+                            "#userList li"
+                        )
+                        .forEach(
+                            item =>
+                                item.classList
+                                    .remove(
+                                        "active"
+                                    )
+                        );
+
+
+                    li.classList.add(
+                        "active"
+                    );
+
+
+                    chatHeader.textContent =
+                        user;
+
+
+                    status.textContent =
+                        "● Online";
+
+
+                    headerAvatar.textContent =
+                        user
+                            .charAt(0)
+                            .toUpperCase();
+
+
+                    emptyState.style.display =
+                        "none";
+
+
+                    messages.style.display =
+                        "flex";
+
+
+                    messages.innerHTML =
+                        "";
+
+                };
+
+                
+                userList.appendChild(li);
+
+            }
+        );
+
+    }
+);
+
+
+
+/* SEND MESSAGE */
+
+chatForm.addEventListener(
+    "submit",
+    (e) => {
+
+        e.preventDefault();
+
+
+        const message =
+            messageInput.value.trim();
+
+
+        if (message === "")
+            return;
+
+
+        if (selectedUser === "") {
+
+            alert(
+                "Pehle kisi user ko select karo."
+            );
+
+            return;
+
+        }
+
+
+        socket.emit(
+            "private message",
+            {
+
+                to: selectedUser,
+
+                message: message
+
+            }
+        );
+
+
+        const li =
+            document.createElement("li");
+
+
+        li.classList.add(
+            "mine"
+        );
+
+
+        li.textContent =
+            "You: " + message;
+
+
+        messages.appendChild(
+            li
+        );
+
+
+        messageInput.value =
+            "";
+
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    }
+);
+
+
+
+/* RECEIVE MESSAGE */
+
+socket.on(
+    "private message",
+    (data) => {
+
+        const li =
+            document.createElement("li");
+
+
+        li.textContent =
+            data.from +
+            ": " +
+            data.message;
+
+
+        messages.appendChild(
+            li
+        );
+
+
+        messages.scrollTop =
+            messages.scrollHeight;
+
+    }
+);
+
+</script>
+
+
+</body>
+</html>
